@@ -10,9 +10,9 @@ class student extends Model
     /** @use HasFactory<\Database\Factories\StudentFactory> */
     use HasFactory;
 
-    protected $fillable = ['name','email','phone','roll','course','photos'];
+    protected $fillable = ['name','email','phone','roll','course_id','photos'];
 
     public function course(){
-        $this->belongsTo(course::class,'course');
+        $this->belongsTo(course::class,'course_id');
     }
 }

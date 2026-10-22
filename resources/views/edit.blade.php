@@ -111,7 +111,7 @@
 
                         <div class="mb-3">
                             <label for="course" class="form-label">Course</label>
-                            <input value="{{ $data->course }}" type="text" name="course" class="form-control" id="course" >
+                            <input value="{{ $data->course_id }}" type="text" name="course" class="form-control" id="course" >
                         </div>
 
                         <div class="mb-3">

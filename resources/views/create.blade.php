@@ -95,7 +95,15 @@
 
                         <div class="mb-3">
                             <label for="course" class="form-label">Course</label>
-                            <input type="text" name="course" class="form-control" id="course" >
+
+                            {{-- <input  type="text" name="course" class="form-control" id="course" > --}}
+
+                            <Select name="course">
+                                @foreach ($courses as $course )
+                                <option value="{{ $course->id }}">{{ $course->courseName }}</option>
+                                @endforeach
+                                
+                            </Select>
                         </div>
 
                         <div class="mb-3">

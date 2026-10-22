@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorestudentRequest;
 use App\Http\Requests\UpdatestudentRequest;
 use App\Models\Student;
+use App\Models\Course;
 use Illuminate\Support\Facades\File;
 
 class StudentController extends Controller
@@ -14,10 +15,10 @@ class StudentController extends Controller
      */
     public function index()
     {
-        // $students = Student::with('course')->get();
-        $students = Student::all();
+     $students = Student::all();
 
-        dd($students);
+   
+    // dd($students);
         return view('index', compact('students'));
     }
 
@@ -26,7 +27,10 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('create');
+
+        $courses = Course::all();
+        
+        return view('create',compact('courses'));
     }
 
     /**
@@ -34,8 +38,7 @@ class StudentController extends Controller
      */
     public function store(StorestudentRequest $request)
     {
-        //  $all =$request->all();
-        //  dd( $all);
+       
 
 
         $request->validate([
@@ -46,12 +49,12 @@ class StudentController extends Controller
                 'regex:/^(?:\+88|88)?(01[3-9]\d{8})$/'
             ],
             'roll' => 'required',
-            'course' => 'required',
+            
             'photos' => 'nullable|image|mimes:jpg,jpeg,png,webp',
 
         ]);
 
-
+        
 
         $photoPath = null;
 
@@ -63,16 +66,19 @@ class StudentController extends Controller
 
             $photoPath = 'photos/' . $fileName;
         }
-
+        
 
         student::create([
+            
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'roll' => $request->roll,
-            'course' => $request->course,
+            'course_id' => $request->course,
 
             'photos' => $photoPath,
+
+            // dd($request),
         ]);
 
         return redirect()->back()->with('success', 'Student registered successfully!');
@@ -138,10 +144,11 @@ class StudentController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'roll' => $request->roll,
-            'course' => $request->course,
+            'course_id' => $request->course,
             'photos' => $filename,
         ]);
     }
+
 
 
     /**

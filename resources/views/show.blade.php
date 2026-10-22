@@ -66,7 +66,7 @@
                           <th class="text-uppercase p-2">roll :</th><td class="text-uppercase">{{ $data['roll'] }}</td>
                         </tr>
                         <tr>
-                          <th class="text-uppercase p-2">course :</th><td class="text-uppercase">{{ $data['course'] }}</td>
+                          <th class="text-uppercase p-2">course :</th><td class="text-uppercase">{{ $data['course_id'] }}</td>
                         </tr>
 
                        

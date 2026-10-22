@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('roll');
-            $table->string('course');
+            
             $table->foreignId('course_id')->constrained('courses')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('photos')->nullable();
             $table->timestamps();
