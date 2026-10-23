@@ -16,9 +16,14 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Student List</h2>
 
-        <a href="{{ url('/create') }}" class="btn btn-primary">
-            + Add Student
-        </a>
+        <div>
+            <a href="{{ url('/create') }}" class="btn btn-primary">
+                student registration
+            </a>
+            <a href="{{ url('/course') }}" class="btn btn-primary">
+                add new course 
+            </a>
+        </div>
     </div>
 
     @if (session('success'))
@@ -34,8 +39,8 @@
                 <table class="table table-bordered table-hover align-middle">
                     <thead class="table-dark">
                         <tr>
-                            <th>ID</th>
-                            <th>Photo</th>
+                            {{-- <th>ID</th> --}}
+                            <th>Student Photo</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -48,7 +53,7 @@
                     <tbody>
                         @forelse ($students as $student)
                             <tr>
-                                <td>{{ $student->id }}</td>
+                                {{-- <td>{{ $student->id }}</td> --}}
 
                                 <td>
                                     @if ($student->photos)
@@ -65,11 +70,11 @@
                                     @endif
                                 </td>
 
-                                <td>{{ $student->name }}</td>
+                                <td class="text-uppercase">{{ $student->name }}</td>
                                 <td>{{ $student->email }}</td>
                                 <td>{{ $student->phone }}</td>
                                 <td>{{ $student->roll }}</td>
-                                <td>{{ $student->course_id }}</td>
+                                <td>{{ $student->course->courseName }}</td>
 
                                 <td>
                                     <a href="{{ url('/show/'. $student->id) }}"

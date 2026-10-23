@@ -27,13 +27,13 @@
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Add Student</a>
+                        <a class="nav-link active" href="{{ url('http://127.0.0.1:8000')  }}">Student list</a>
 
                     </li>
 
                     <li class="nav-item">
 
-                        <a class="nav-link active" href="#">Add Course</a>
+                        <a class="nav-link active" href="{{ url('http://127.0.0.1:8000/course') }}">Add Course</a>
                     </li>
 
                 </ul>
@@ -60,7 +60,7 @@
                     @endif
                  
                     @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div class="alert alert-text-danger">
                         <ul class="mb-0">
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -74,27 +74,31 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name" class="form-label">Name
+                                <samp class="text-danger">*</samp>
+                            </label>
                             <input type="text" name="name" class="form-control" id="name" >
                         </div>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
+                            <label for="email" class="form-label">Email address
+                                <samp class="text-danger">*</samp>
+                            </label>
                             <input type="email" name="email" class="form-control" id="email" >
                         </div>
 
                         <div class="mb-3">
-                            <label for="phone" class="form-label">Phone</label>
+                            <label for="phone" class="form-label">Phone
+                                <samp class="text-danger">*</samp>
+                            </label>
                             <input type="tel" name="phone" class="form-control" id="phone" >
                         </div>
 
-                        <div class="mb-3">
-                            <label for="roll" class="form-label">Roll</label>
-                            <input type="text" name="roll" class="form-control" id="roll" >
-                        </div>
 
                         <div class="mb-3">
-                            <label for="course" class="form-label">Course</label>
+                            <label for="course" class="form-label">Select the course</label> 
+                            <samp class="text-danger">*</samp>
+                            <br/>
 
                             {{-- <input  type="text" name="course" class="form-control" id="course" > --}}
 
@@ -109,6 +113,12 @@
                         <div class="mb-3">
                             <label for="photos" class="form-label">Photo</label>
                             <input type="file" name="photos" class="form-control" id="photos" accept="image/*">
+                        </div>
+
+                        <div class="mb-3">
+                            <samp class="text-danger">affer completed registration auto genaret student id </samp>
+                           
+                            <input hidden value="{{ $genarateRoll }}" readonly type="text" name="roll" class="form-control" id="roll" >
                         </div>
 
                         <button type="submit" class="btn btn-primary">Add Student</button>

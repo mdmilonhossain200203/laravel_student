@@ -16,8 +16,10 @@ class StudentController extends Controller
     public function index()
     {
      $students = Student::all();
-
+    //  $Course = Course::all();
+        
    
+    //  dd($Course);
     // dd($students);
         return view('index', compact('students'));
     }
@@ -27,10 +29,14 @@ class StudentController extends Controller
      */
     public function create()
     {
-
+        // make student id
         $courses = Course::all();
+        $studentsId = $students = Student::latest()->first()->id;
+        $genarateRoll = str_pad($studentsId + 1, 6, '0', STR_PAD_LEFT);
+    
+
         
-        return view('create',compact('courses'));
+        return view('create',compact('courses','genarateRoll'));
     }
 
     /**
@@ -68,7 +74,7 @@ class StudentController extends Controller
         }
         
 
-        student::create([
+        Student::create([
             
             'name' => $request->name,
             'email' => $request->email,
@@ -87,9 +93,9 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(student $student, $id)
+    public function show(Student $student, $id)
     {
-        $data = student::find($id);
+        $data = Student::find($id);
         // dd($data->name);
         return view('show', compact('data'));
     }
@@ -97,9 +103,9 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(student $student, $id)
+    public function edit(Student $student, $id)
     {
-        $data = student::find($id);
+        $data = Student::find($id);
         return view('edit', compact('data'));
     }
 
@@ -154,9 +160,9 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(student $student, $id)
+    public function destroy(Student $student, $id)
     {
-        $student = student::findOrFail($id);
+        $student = Student::findOrFail($id);
 
         if ($student->photos && File::exists(public_path($student->photos))) {
             File::delete(public_path($student->photos));
