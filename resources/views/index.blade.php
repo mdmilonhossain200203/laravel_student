@@ -23,6 +23,12 @@
             <a href="{{ url('/course') }}" class="btn btn-primary">
                 add new course 
             </a>
+
+             <form class="d-flex m-1" method="GET" action="{{ url('/search')}}">
+                    <input name="search" class="form-control m-1" type="search" placeholder="Search" aria-label="Search">
+                    
+                    <button class="btn btn-primary mt-1 " type="submit">Search</button>
+                </form>
         </div>
     </div>
 
@@ -111,6 +117,8 @@
                     </tbody>
                 </table>
             </div>
+
+            {{ $students->links() }}
 
         </div>
     </div>

@@ -15,6 +15,7 @@ Route::get('/show/{id}', [StudentController::class,'show']);
 Route::get('/edit/{id}', [StudentController::class,'edit']);
 Route::PUT('/update/{id}', [StudentController::class,'update']);
 Route::delete('/delete/{id}', [StudentController::class,'destroy']);
+Route::get('/search', [StudentController::class,'search']);
 
 
 // course crud

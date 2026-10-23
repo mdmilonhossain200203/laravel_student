@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorestudentRequest;
 use App\Http\Requests\UpdatestudentRequest;
-use App\Models\Student;
 use App\Models\Course;
+use App\Models\Student;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class StudentController extends Controller
@@ -13,28 +14,37 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request  )
     {
-     $students = Student::all();
-    //  $Course = Course::all();
-        
-   
-    //  dd($Course);
-    // dd($students);
+
+        $search=  $request->search;
+        $students = Student::where('name', 'like', "%{$search}%")->paginate(1);
+
+        //  $students = Student::paginate(1);
+
         return view('index', compact('students'));
+
     }
+
+    //search single page 
+
+    // public function search(Request $request  )
+    // {
+    //     $search=  $request->search;
+    //     dd( $search);
+    //     $students = Student::where('name', 'like', "%{$search}%")->paginate(1);
+    //     return view('index', compact('students'));
+    // }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        // make student id
+        // make id genrate
         $courses = Course::all();
         $studentsId = $students = Student::latest()->first()->id;
         $genarateRoll = str_pad($studentsId + 1, 6, '0', STR_PAD_LEFT);
-    
-
         
         return view('create',compact('courses','genarateRoll'));
     }
