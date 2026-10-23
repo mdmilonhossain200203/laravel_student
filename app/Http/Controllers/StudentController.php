@@ -14,9 +14,8 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request  )
+    public function index(Request $request )
     {
-
         $search=  $request->search;
         $students = Student::where('name', 'like', "%{$search}%")->paginate(1);
 

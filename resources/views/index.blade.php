@@ -24,7 +24,7 @@
                 add new course 
             </a>
 
-             <form class="d-flex m-1" method="GET" action="{{ url('/search')}}">
+             <form class="d-flex m-1" method="GET" action="{{ url('/')}}">
                     <input name="search" class="form-control m-1" type="search" placeholder="Search" aria-label="Search">
                     
                     <button class="btn btn-primary mt-1 " type="submit">Search</button>
